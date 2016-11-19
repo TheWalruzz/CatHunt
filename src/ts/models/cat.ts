@@ -1,10 +1,10 @@
 namespace App.Models {
     export class Cat extends Phaser.Sprite {
-        create(): void {
+        public create(): void {
 
         }
 
-        update(): void {
+        public update(): void {
 
         }
     }

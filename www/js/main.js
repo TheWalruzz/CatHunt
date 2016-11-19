@@ -60,15 +60,15 @@ var App;
             };
             this.config.process(this.defaults);
             this.config.process(config);
-            this.game = new Phaser.Game(this.config.get("width"), this.config.get("height"), Phaser.AUTO, "container", this);
+            this.game = new Phaser.Game(this.config.get('width'), this.config.get('height'), Phaser.AUTO, 'container', this);
         }
         Main.prototype.preload = function () {
         };
         Main.prototype.create = function () {
-            this.game.state.add("Boot", App.State.Boot);
-            this.game.state.add("Preload", App.State.Preload);
-            this.game.state.add("Game", App.State.Game);
-            this.game.state.start("Boot");
+            this.game.state.add('Boot', App.State.Boot);
+            this.game.state.add('Preload', App.State.Preload);
+            this.game.state.add('Game', App.State.Game);
+            this.game.state.start('Boot');
         };
         return Main;
     }());
@@ -99,14 +99,54 @@ var App;
 (function (App) {
     var Models;
     (function (Models) {
+        var Beetle = (function (_super) {
+            __extends(Beetle, _super);
+            function Beetle(game, x, y, smashCallback) {
+                _super.call(this, game, x, y, 'beetle', smashCallback);
+                this.animations.add('walk-h', [0, 1, 2, 3, 4, 5], 12, true);
+                this.animations.add('walk-v', [6, 7, 8, 9, 10, 11], 12, true);
+                this.animations.play('walk-h');
+            }
+            Object.defineProperty(Beetle.prototype, "points", {
+                get: function () {
+                    return 10;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Beetle.prototype.create = function () {
+            };
+            Beetle.prototype.move = function () {
+                this.x -= 1;
+            };
+            return Beetle;
+        }(App.Models.Enemy));
+        Models.Beetle = Beetle;
+    })(Models = App.Models || (App.Models = {}));
+})(App || (App = {}));
+var App;
+(function (App) {
+    var Models;
+    (function (Models) {
         var Enemy = (function (_super) {
             __extends(Enemy, _super);
-            function Enemy() {
-                _super.apply(this, arguments);
+            function Enemy(game, x, y, sprite, smashCallback) {
+                _super.call(this, game, x, y, sprite);
+                this.smashCallback = smashCallback;
+                this.inputEnabled = true;
+                this.events.onInputDown.add(this.handleClick, this);
             }
-            Enemy.prototype.create = function () {
-            };
+            Object.defineProperty(Enemy.prototype, "points", {
+                get: function () { },
+                enumerable: true,
+                configurable: true
+            });
             Enemy.prototype.update = function () {
+                this.move();
+            };
+            Enemy.prototype.handleClick = function () {
+                this.smashCallback(this.points);
+                this.destroy();
             };
             return Enemy;
         }(Phaser.Sprite));
@@ -125,8 +165,8 @@ var App;
             Boot.prototype.preload = function () {
             };
             Boot.prototype.create = function () {
-                this.game.stage.backgroundColor = "#EFDD6F";
-                this.game.state.start("Preload");
+                this.game.stage.backgroundColor = '#EFDD6F';
+                this.game.state.start('Preload');
             };
             return Boot;
         }(Phaser.State));
@@ -143,6 +183,11 @@ var App;
                 _super.apply(this, arguments);
             }
             Game.prototype.create = function () {
+                this.enemies = this.game.add.group();
+                var beetle = new App.Models.Beetle(this.game, 200, 200, function (points) {
+                    console.log('haha', points);
+                });
+                this.enemies.add(beetle);
             };
             Game.prototype.update = function () {
             };
@@ -161,8 +206,10 @@ var App;
                 _super.apply(this, arguments);
             }
             Preload.prototype.preload = function () {
+                this.game.load.image('beetle', 'assets/beetle_base.png');
             };
             Preload.prototype.create = function () {
+                this.game.state.start('Game');
             };
             return Preload;
         }(Phaser.State));

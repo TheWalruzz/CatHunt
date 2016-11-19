@@ -9,7 +9,6 @@
       "p2.d.ts"
     ],
     "global": true,
-    "name": "phaser",
-    "type": "typings"
+    "name": "phaser"
   }
 }

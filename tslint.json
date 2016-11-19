@@ -1,3 +1,6 @@
 {
-  "extends": "./bower_components/phaser/typescript/tslint.json"
+  "rulesDirectory": ["node_modules/tslint-eslint-rules/dist/rules"],
+  "rules": {
+    "no-constant-condition": true
+  }
 }
