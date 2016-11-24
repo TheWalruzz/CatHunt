@@ -5,12 +5,15 @@ namespace App.Models {
             x: number,
             y: number,
             sprite: string,
-            private smashCallback: (points: number) => void
+            protected smashCallback: (points: number) => void
         ) {
             super(game, x, y, sprite);
 
             this.inputEnabled = true;
             this.events.onInputDown.add(this.handleClick, this);
+            this.game.physics.arcade.enable(this);
+
+            this.game.add.existing(this);
         }
 
         /**

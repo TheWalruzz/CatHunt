@@ -6,6 +6,7 @@ namespace App.State {
 
     public create(): void {
       this.game.stage.backgroundColor = '#EFDD6F';
+      this.game.physics.startSystem(Phaser.Physics.ARCADE);
       this.game.state.start('Preload');
     }
   }

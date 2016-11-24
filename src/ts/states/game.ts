@@ -1,19 +1,30 @@
 namespace App.State {
     export class Game extends Phaser.State {
-        private enemies: Phaser.Group;
+        private interval: number = 2000;
 
         public create(): void {
-            this.enemies = this.game.add.group();
+            setInterval(this.createNewEnemy.bind(this), this.interval);
+        }
 
-            let beetle = new App.Models.Beetle(this.game, 200, 200, (points) => {
+        createNewEnemy(): void {
+            let nextPosition = this.getNextSpawnPoint();
+
+            new App.Models.Fly(this.game, nextPosition.x, nextPosition.y, (points) => {
                 console.log('haha', points);
             });
-
-            this.enemies.add(beetle);
         }
 
         public update(): void {
 
+        }
+
+        private getNextSpawnPoint(): Phaser.Point {
+            let point = new Phaser.Point();
+            
+            point.x = Math.round(Math.random()) ? 0 : this.game.width;
+            point.y = this.game.height - Math.round(Math.random() * this.game.width);
+
+            return point;
         }
     }
 }
