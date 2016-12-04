@@ -5,7 +5,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "install": "bower install && typings install"
+    "install": "bower install && typings install",
+    "start": "grunt build && grunt debug"
   },
   "devDependencies": {
     "bower": "^1.7.9",
