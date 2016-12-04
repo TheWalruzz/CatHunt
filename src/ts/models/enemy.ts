@@ -1,17 +1,28 @@
 namespace App.Models {
     export abstract class Enemy extends Phaser.Sprite {
+        protected startX: number;
+        protected startY: number;
+        protected endX: number;
+        protected endY: number;
+
         constructor(
             game: Phaser.Game,
             x: number,
             y: number,
             sprite: string,
-            protected smashCallback: (points: number) => void
+            protected smashCallback: (enemy: App.Models.Enemy, points: number) => void
         ) {
             super(game, x, y, sprite);
 
             this.inputEnabled = true;
             this.events.onInputDown.add(this.handleClick, this);
             this.game.physics.arcade.enable(this);
+            this.checkWorldBounds = true;
+
+            this.startX = x;
+            this.startY = y;
+            this.endX = Math.abs(this.x - this.game.width);
+            this.endY = 2 * this.game.height - this.game.width - y;
 
             this.game.add.existing(this);
         }

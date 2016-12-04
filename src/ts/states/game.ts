@@ -3,13 +3,15 @@ namespace App.State {
         private interval: number = 2000;
 
         public create(): void {
+            this.game.world.setBounds(0, 0, this.game.width, this.game.height);
+            console.log(this.game.world.getBounds());
             setInterval(this.createNewEnemy.bind(this), this.interval);
         }
 
         createNewEnemy(): void {
             let nextPosition = this.getNextSpawnPoint();
 
-            new App.Models.Fly(this.game, nextPosition.x, nextPosition.y, (points) => {
+            new App.Models.Fly(this.game, nextPosition.x, nextPosition.y, (enemy, points) => {
                 console.log('haha', points);
             });
         }
