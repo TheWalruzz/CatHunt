@@ -3,6 +3,6 @@
     "debug": "registry:npm/debug#2.0.0+20160723033700"
   },
   "globalDevDependencies": {
-    "phaser": "github:photonstorm/phaser/typescript/typings.json"
+    "phaser": "github:photonstorm/phaser/v2/typescript/typings.json"
   }
 }

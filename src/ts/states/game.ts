@@ -2,7 +2,8 @@ namespace App.State {
     export class Game extends Phaser.State {
         private interval: number = 2000;
         private enemies: any = [
-            App.Models.Beetle
+            App.Models.Beetle,
+            App.Models.Fly
         ];
 
         public create(): void {
@@ -10,20 +11,7 @@ namespace App.State {
             setInterval(this.createNewEnemy.bind(this), this.interval);
         }
 
-        createNewEnemy(): void {
-            let nextPosition = this.getNextSpawnPoint();
-
-            new this.enemies[Math.floor(Math.random() * this.enemies.length)](
-                this.game,
-                nextPosition.x,
-                nextPosition.y,
-                this.smashEnemy.bind(this)
-            );
-        }
-
-        public update(): void {
-
-        }
+        public update(): void {}
 
         private getNextSpawnPoint(): Phaser.Point {
             let point = new Phaser.Point();
@@ -36,6 +24,17 @@ namespace App.State {
 
         private smashEnemy(enemy: App.Models.AbstractEnemy): void {
             console.log('haha', enemy.points);
+        }
+
+        private createNewEnemy(): void {
+            let nextPosition = this.getNextSpawnPoint();
+
+            new this.enemies[Math.floor(Math.random() * this.enemies.length)](
+                this.game,
+                nextPosition.x,
+                nextPosition.y,
+                this.smashEnemy.bind(this)
+            );
         }
     }
 }
