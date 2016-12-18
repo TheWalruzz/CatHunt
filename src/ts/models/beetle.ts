@@ -12,6 +12,7 @@ namespace App.Models {
             this.animations.play('walk');
 
             this.rotation = this.game.physics.arcade.moveToXY(this, this.endX, this.endY, 85);
+            this.tint = Phaser.Color.getRandomColor(20, 255, 0.7);
         }
 
         public get points(): number {
@@ -25,6 +26,7 @@ namespace App.Models {
         public smash(): void {
             this.body.velocity.setTo(0, 0);
             this.animations.stop('walk');
+            this.tint = 0xffffff;
             this.loadTexture('stain');
         }
     }

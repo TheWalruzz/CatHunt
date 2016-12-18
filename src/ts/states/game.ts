@@ -1,7 +1,8 @@
 namespace App.State {
     export class Game extends Phaser.State {
-        private interval: number = 2000;
+        private interval: number = 1500;
         private enemies: any = [
+            App.Models.Beetle,
             App.Models.Beetle,
             App.Models.Fly
         ];
@@ -29,7 +30,7 @@ namespace App.State {
         private createNewEnemy(): void {
             let nextPosition = this.getNextSpawnPoint();
 
-            new this.enemies[Math.floor(Math.random() * this.enemies.length)](
+            new this.enemies[Math.round(Math.random() * this.enemies.length)](
                 this.game,
                 nextPosition.x,
                 nextPosition.y,
