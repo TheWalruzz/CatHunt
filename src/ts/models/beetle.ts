@@ -11,7 +11,7 @@ namespace App.Models {
             this.animations.add('walk', [0, 1, 2, 3, 4, 5, 4, 3, 2, 1], 15, true);
             this.animations.play('walk');
 
-            this.rotation = this.game.physics.arcade.moveToXY(this, this.endX, this.endY, 85);
+            this.rotation = this.game.physics.arcade.moveToXY(this, this.endX, this.endY, 100);
             this.tint = Phaser.Color.getRandomColor(20, 255, 0.7);
         }
 

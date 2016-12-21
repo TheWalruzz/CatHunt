@@ -71,6 +71,7 @@ namespace App {
     public create(): void {
       this.game.state.add('Boot', App.State.Boot);
       this.game.state.add('Preload', App.State.Preload);
+      this.game.state.add('Menu', App.State.Menu);
       this.game.state.add('Game', App.State.Game);
 
       this.game.state.start('Boot');
@@ -80,5 +81,8 @@ namespace App {
 
 window.onload = () => {
   // tslint:disable-next-line:no-unused-new no-unused-variable
-  let app = new App.Main({width: 360, height: 640});
+  let app = new App.Main({
+    width: 360,
+    height: 640,
+  });
 };

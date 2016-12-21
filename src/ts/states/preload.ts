@@ -7,6 +7,7 @@ namespace App.State {
     }
 
     public create(): void {
+      // this.game.state.start('Menu');
       this.game.state.start('Game');
     }
   }
