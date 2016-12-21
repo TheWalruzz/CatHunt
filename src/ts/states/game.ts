@@ -1,6 +1,7 @@
 namespace App.State {
     export class Game extends Phaser.State {
-        private interval: number = 1500;
+        private intervalDuration: number = 1500;
+        private intervalId: number;
         private points: number = 0;
         private enemies: any = [
             App.Models.Beetle,
@@ -8,17 +9,26 @@ namespace App.State {
             App.Models.Fly
         ];
         private text: Phaser.Text;
+        private menuButton: Phaser.Sprite;
 
         public create(): void {
             this.game.world.setBounds(0, 0, this.game.width, this.game.height);
-            setInterval(this.createNewEnemy.bind(this), this.interval);
-            this.text = this.game.add.text(this.game.world.centerX, 15, 'Punkty: 0', {
+            this.intervalId = setInterval(this.createNewEnemy.bind(this), this.intervalDuration);
+            this.text = this.game.add.text(this.game.world.centerX, 40, 'Punkty: 0', {
                 font: 'Arial Black',
                 fontSize: 20,
                 fill: '#003B8A'
             });
             this.text.anchor.set(0.5);
             this.text.align = 'center';
+
+            this.menuButton = this.game.add.sprite(5, 5, 'menu');
+            this.menuButton.inputEnabled = true;
+            this.menuButton.events.onInputDown.add(() => {
+                window.clearInterval(this.intervalId);
+                this.game.state.start('Menu');
+            }, this);
+            this.menuButton.scale.set(0.2);
         }
 
         public update(): void {}
