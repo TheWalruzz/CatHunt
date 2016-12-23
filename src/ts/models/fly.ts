@@ -14,11 +14,13 @@ namespace App.Models {
             this.animations.add('walk', [0, 1, 2, 3, 2, 1], 20, true);
             this.animations.play('walk');
 
-            this.body.velocity.setTo(Phaser.Math.sign(this.endX - this.startX) * 2.5, 0);
+            this.body.velocity.setTo(Phaser.Math.sign(this.endX - this.startX) * 3, 0);
+            // this.hitArea = new Phaser.Rectangle(-16, -16, 80, 80);
+            this.scale.set(1.5);
         }
 
         public get points(): number {
-            return 15;
+            return 25;
         }
 
         public move(): void {

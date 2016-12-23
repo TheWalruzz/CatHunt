@@ -14,13 +14,17 @@ namespace App.State {
         public create(): void {
             this.game.world.setBounds(0, 0, this.game.width, this.game.height);
             this.game.time.events.loop(this.intervalDuration, this.createNewEnemy, this);
-            this.text = this.game.add.text(this.game.width - 15, 40, 'Punkty: 0', {
+            this.text = this.game.add.text(this.game.width - 15, 40, 'Punkty: 0  ', {
                 font: 'Arial Black',
                 fontSize: 20,
+                fontWeight: 'bold',
                 fill: '#003B8A'
             });
             this.text.anchor.set(1, 0.5);
             this.text.align = 'center';
+            this.text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
+            this.text.stroke = '#000000';
+            this.text.strokeThickness = 2;
 
             this.menuButton = this.game.add.sprite(15, 8, 'pause');
             this.menuButton.inputEnabled = true;
@@ -44,7 +48,7 @@ namespace App.State {
 
         private smashEnemy(enemy: App.Models.AbstractEnemy): void {
             this.points += enemy.points;
-            this.text.text = `Punkty: ${this.points}`;
+            this.text.text = `Punkty: ${this.points}  `;
         }
 
         private createNewEnemy(): void {
