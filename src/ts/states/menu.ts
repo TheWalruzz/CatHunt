@@ -1,6 +1,13 @@
 namespace App.State {
     export class Menu extends Phaser.State {
+        private static music: Phaser.Sound;
+
         public create(): void {
+            if (!Menu.music.isPlaying) {
+                Menu.music = this.game.add.audio('music', 1, true);
+                Menu.music.play();
+            }
+
             let mainText: Phaser.Text = this.game.add.text(this.world.centerX, this.world.centerY / 3, 'Kocie Polowanie', {
                 font: 'Arial Black',
                 fontSize: 32,
