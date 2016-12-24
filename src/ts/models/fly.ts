@@ -31,10 +31,14 @@ namespace App.Models {
         }
 
         public smash(): void {
-            this.isMoving = false;
-            this.body.velocity.setTo(0, 0);
+            this.stop();
             this.animations.stop('walk');
             this.loadTexture('stain');
+        }
+
+        public stop(): void {
+            this.isMoving = false;
+            super.stop();
         }
     }
 }

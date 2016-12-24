@@ -1,5 +1,7 @@
 namespace App.Models {
     export abstract class AbstractEnemy extends Phaser.Sprite {
+        public isSmashed: boolean = false;
+
         protected startX: number;
         protected startY: number;
         protected endX: number;
@@ -18,6 +20,7 @@ namespace App.Models {
             this.events.onInputDown.add(this.handleClick, this);
             this.game.physics.arcade.enable(this);
             this.checkWorldBounds = true;
+            this.sendToBack();
 
             this.events.onOutOfBounds.add((object) => {
                 object.destroy();
@@ -50,9 +53,13 @@ namespace App.Models {
             this.move();
         }
 
+        public stop(): void {
+            this.body.velocity.set(0);
+        }
+
         private handleClick(): void {
-            this.smash();
             this.smashCallback(this);
+            this.isSmashed = true;
         }
     }
 }

@@ -10,6 +10,7 @@ namespace App.State {
         ];
         private text: Phaser.Text;
         private menuButton: Phaser.Sprite;
+        private cat: App.Models.Cat;
 
         public create(): void {
             this.game.world.setBounds(0, 0, this.game.width, this.game.height);
@@ -18,14 +19,14 @@ namespace App.State {
                 font: 'Arial Black',
                 fontSize: 20,
                 fontWeight: 'bold',
-                fill: '#003B8A'
+                fill: '#87ceeb'
             });
             this.text.anchor.set(1, 0.5);
             this.text.align = 'center';
             this.text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
             this.text.stroke = '#000000';
             this.text.strokeThickness = 2;
-
+            
             this.menuButton = this.game.add.sprite(15, 8, 'pause');
             this.menuButton.inputEnabled = true;
             this.menuButton.events.onInputDown.add(() => {
@@ -33,6 +34,12 @@ namespace App.State {
                 this.game.state.start('Menu');
             }, this);
             this.menuButton.scale.set(0.5);
+            
+
+            this.cat = new App.Models.Cat(this.game, this.world.centerX, 10);;
+
+            this.text.bringToTop();
+            this.menuButton.bringToTop();
         }
 
         public update(): void {}
@@ -47,8 +54,14 @@ namespace App.State {
         }
 
         private smashEnemy(enemy: App.Models.AbstractEnemy): void {
-            this.points += enemy.points;
-            this.text.text = `Punkty: ${this.points}  `;
+            if (!enemy.isSmashed) {
+                this.cat.attack(new Phaser.Point(enemy.x, enemy.y), () => {
+                    enemy.sendToBack();
+                    enemy.smash();
+                });
+                this.points += enemy.points;
+                this.text.text = `Punkty: ${this.points}  `;
+            }
         }
 
         private createNewEnemy(): void {
