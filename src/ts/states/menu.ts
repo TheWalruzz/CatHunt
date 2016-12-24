@@ -3,7 +3,7 @@ namespace App.State {
         private static music: Phaser.Sound;
 
         public create(): void {
-            if (!Menu.music.isPlaying) {
+            if (!Menu.music || !Menu.music.isPlaying) {
                 Menu.music = this.game.add.audio('music', 1, true);
                 Menu.music.play();
             }

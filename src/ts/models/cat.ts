@@ -37,13 +37,13 @@ namespace App.Models {
 
         public attack(point: Phaser.Point, callback: Function): void {
             let retract = this.game.add.tween(this.paw).to({ height: this.pawHeight }, 50, Phaser.Easing.Linear.None),
-                extend = this.game.add.tween(this.paw).to({ height: this.pawPivot.distance(point) + 48 }, 50, Phaser.Easing.Exponential.In),
+                extend = this.game.add.tween(this.paw).to({ height: this.pawPivot.distance(point) + 48 }, 35, Phaser.Easing.Exponential.In),
                 revertRotation = this.game.add.tween(this.paw).to({ rotation: this.startingAngle }, 100, Phaser.Easing.Linear.None);
             
             extend.onComplete.add(callback);
             
             this.game.add.tween(this.paw).to({ rotation: Phaser.Math.angleBetweenPoints(this.pawPivot, point) - Math.PI / 2 },
-                35,
+                20,
                 Phaser.Easing.Linear.None,
                 true
             ).chain(extend, retract, revertRotation);
