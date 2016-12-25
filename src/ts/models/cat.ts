@@ -2,6 +2,7 @@ namespace App.Models {
     export class Cat extends Phaser.Group {
         public cat: Phaser.Sprite;
         public paw: Phaser.Sprite;
+        public staticPaw: Phaser.Sprite;
 
         private startingAngle: number;
         private pawPivot: Phaser.Point;
@@ -18,9 +19,15 @@ namespace App.Models {
             this.cat.scale.set(0.56);
             this.cat.anchor.set(0.5, 0);
 
+            this.staticPaw = this.game.make.sprite(140, 145, 'catPaw');
+            this.staticPaw.anchor.set(0.5, 0);
+            this.staticPaw.scale.set(0.56);
+
             this.paw = this.game.make.sprite(70, 175, 'catPaw');
             this.paw.anchor.set(0.5, 0);
             this.paw.scale.set(0.56);
+
+            this.add(this.staticPaw);
             this.add(this.paw);
             this.add(this.cat);
 
