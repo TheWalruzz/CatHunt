@@ -1,11 +1,14 @@
 namespace App.State {
     export class Menu extends Phaser.State {
-        private static music: Phaser.Sound;
+        private isPlaying: boolean = false;
 
         public create(): void {
-            if (!Menu.music || !Menu.music.isPlaying) {
-                Menu.music = this.game.add.audio('music', 1, true);
-                Menu.music.play();
+            let music: Phaser.Sound = App.Config.getInstance().get('music');
+            if (!music) {
+                music = this.game.add.audio('music', 1, true);
+                music.play();
+                this.isPlaying = true;
+                App.Config.getInstance().set('music', music);
             }
 
             let mainText: Phaser.Text = this.game.add.text(this.world.centerX, this.world.centerY / 3, 'Kocie Polowanie', {
@@ -55,6 +58,22 @@ namespace App.State {
             playButton.events.onInputDown.add(() => {
                 this.game.state.start('Game');
             }, this);
+
+            let musicButton: Phaser.Sprite = this.game.add.sprite(this.world.centerX, this.world.centerY * (5 / 4), this.isPlaying ? 'music_on' : 'music_off');
+            musicButton.anchor.set(0.5, 0.35);
+            musicButton.scale.set(0.5, 0.5)
+            musicButton.inputEnabled = true;
+            musicButton.events.onInputDown.add(() => {
+                if (musicButton.key === 'music_on') {
+                    music.stop();
+                    this.isPlaying = false;
+                    musicButton.loadTexture('music_off');
+                } else {
+                    music.play();
+                    this.isPlaying = true;
+                    musicButton.loadTexture('music_on');
+                }
+            });
         }
 
         public update(): void {
