@@ -15,7 +15,7 @@ namespace App.State {
         public create(): void {
             this.game.world.setBounds(0, 0, this.game.width, this.game.height);
             this.game.time.events.loop(this.intervalDuration, this.createNewEnemy, this);
-            this.text = this.game.add.text(this.game.width - 15, 40, 'Punkty: 0  ', {
+            this.text = this.game.add.text(this.game.width - 15 * window.devicePixelRatio, 40 * window.devicePixelRatio, 'Punkty: 0  ', {
                 font: 'Arial Black',
                 fontSize: 20,
                 fontWeight: 'bold',
@@ -26,17 +26,18 @@ namespace App.State {
             this.text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
             this.text.stroke = '#000000';
             this.text.strokeThickness = 2;
+            this.text.scale.set(window.devicePixelRatio);
             
-            this.menuButton = this.game.add.sprite(15, 8, 'pause');
+            this.menuButton = this.game.add.sprite(15 * window.devicePixelRatio, 8 * window.devicePixelRatio, 'pause');
             this.menuButton.inputEnabled = true;
             this.menuButton.events.onInputDown.add(() => {
                 this.game.time.events.remove(this.interval);
                 this.game.state.start('Menu');
             }, this);
-            this.menuButton.scale.set(0.5);
+            this.menuButton.scale.set(0.5 * window.devicePixelRatio);
             
 
-            this.cat = new App.Models.Cat(this.game, this.world.centerX, 10);
+            this.cat = new App.Models.Cat(this.game, this.world.centerX, 10 * window.devicePixelRatio);
 
             this.text.bringToTop();
             this.menuButton.bringToTop();

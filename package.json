@@ -6,7 +6,10 @@
   "license": "UNLICENSED",
   "scripts": {
     "install": "bower install && typings install",
-    "start": "grunt build && grunt debug"
+    "start": "grunt build && grunt debug",
+    "build": "grunt build",
+    "build:cordova": "npm run build && cordova build android",
+    "start:cordova": "npm run build && cordova run android"
   },
   "devDependencies": {
     "bower": "^1.7.9",

@@ -60,6 +60,7 @@ namespace App.Models {
         private handleClick(): void {
             this.smashCallback(this);
             this.isSmashed = true;
+            this.bringToTop();
         }
     }
 }

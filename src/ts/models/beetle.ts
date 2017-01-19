@@ -11,10 +11,10 @@ namespace App.Models {
             this.animations.add('walk', [0, 1, 2, 3, 4, 5, 4, 3, 2, 1], 15, true);
             this.animations.play('walk');
 
-            this.rotation = this.game.physics.arcade.moveToXY(this, this.endX, this.endY, 120);
+            this.rotation = this.game.physics.arcade.moveToXY(this, this.endX, this.endY, 120 * window.devicePixelRatio);
             this.tint = Phaser.Color.getRandomColor(20, 255, 0.7);
             // this.hitArea = new Phaser.Rectangle(-16, -16, 80, 80);
-            this.scale.set(1.5);
+            this.scale.set(1.5 * window.devicePixelRatio);
         }
 
         public get points(): number {

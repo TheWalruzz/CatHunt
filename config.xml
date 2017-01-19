@@ -2,7 +2,7 @@
 <widget id="com.game.CatHunt" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Kocie Polowanie</name>
     <description>
-        Mała gra stworzona jako prezent świąteczny dla Marysi.
+        Mała gra stworzona jako prezent dla Marysi.
     </description>
     <author email="radej.pawel@gmail.com" href="http://cordova.io">
         Paweł Radej
@@ -23,4 +23,5 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <preference name="orientation" value="portrait" />
 </widget>

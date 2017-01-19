@@ -14,9 +14,9 @@ namespace App.Models {
             this.animations.add('walk', [0, 1, 2, 3, 2, 1], 20, true);
             this.animations.play('walk');
 
-            this.body.velocity.setTo(Phaser.Math.sign(this.endX - this.startX) * 3, 0);
+            this.body.velocity.setTo(Phaser.Math.sign(this.endX - this.startX) * 3 * window.devicePixelRatio, 0);
             // this.hitArea = new Phaser.Rectangle(-16, -16, 80, 80);
-            this.scale.set(1.5);
+            this.scale.set(1.5 * window.devicePixelRatio);
         }
 
         public get points(): number {
@@ -26,7 +26,7 @@ namespace App.Models {
         public move(): void {
             if (this.isMoving) {
                 this.x += this.body.velocity.x;
-                this.y = -Math.cos((this.steps++) / 20) * 55 + this.startY;
+                this.y = -Math.cos((this.steps++) / 20) * 55 * window.devicePixelRatio + this.startY;
             }
         }
 

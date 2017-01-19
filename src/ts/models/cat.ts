@@ -16,16 +16,16 @@ namespace App.Models {
             super(game);
 
             this.cat = this.game.make.sprite(x, y, 'cat');
-            this.cat.scale.set(0.56);
+            this.cat.scale.set(0.56 * window.devicePixelRatio);
             this.cat.anchor.set(0.5, 0);
 
-            this.staticPaw = this.game.make.sprite(this.game.world.centerX - 30, 145, 'catPaw');
+            this.staticPaw = this.game.make.sprite(this.game.world.centerX - 30 * window.devicePixelRatio, 145 * window.devicePixelRatio, 'catPaw');
             this.staticPaw.anchor.set(0.5, 0);
-            this.staticPaw.scale.set(0.56);
+            this.staticPaw.scale.set(0.56 * window.devicePixelRatio);
 
-            this.paw = this.game.make.sprite(this.staticPaw.x - 70, 175, 'catPaw');
+            this.paw = this.game.make.sprite(this.staticPaw.x - 70 * window.devicePixelRatio, 175 * window.devicePixelRatio, 'catPaw');
             this.paw.anchor.set(0.5, 0);
-            this.paw.scale.set(0.56);
+            this.paw.scale.set(0.56 * window.devicePixelRatio);
 
             this.add(this.staticPaw);
             this.add(this.paw);

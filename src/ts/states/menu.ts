@@ -21,6 +21,7 @@ namespace App.State {
             mainText.setShadow(2, 2, 'rgba(0,0,0,0.5)', 5);
             mainText.stroke = '#000000';
             mainText.strokeThickness = 2;
+            mainText.scale.set(window.devicePixelRatio);
             
             let dedicationText: Phaser.Text = this.game.add.text(this.world.centerX, this.world.centerY * (13 / 8), 'Dla Marysi', {
                 font: 'Arial Black',
@@ -31,6 +32,7 @@ namespace App.State {
             dedicationText.stroke = '#000000';
             dedicationText.strokeThickness = 2;
             dedicationText.setShadow(2, 2, 'rgba(0,0,0,0.5)', 5);
+            dedicationText.scale.set(window.devicePixelRatio);
 
             let fromText: Phaser.Text = this.game.add.text(this.world.centerX, this.world.centerY * (14 / 8), 'od wujka Pawła', {
                 font: 'Arial Black',
@@ -41,17 +43,19 @@ namespace App.State {
             fromText.stroke = '#000000';
             fromText.strokeThickness = 2;
             fromText.setShadow(2, 2, 'rgba(0,0,0,0.5)', 5);
+            fromText.scale.set(window.devicePixelRatio);
 
             let playButton: Phaser.Sprite = this.game.add.sprite(this.world.centerX, this.world.centerY, 'play');
             playButton.anchor.set(0.5, 0.75);
             playButton.inputEnabled = true;
+            playButton.scale.set(window.devicePixelRatio);
             playButton.events.onInputDown.add(() => {
                 this.game.state.start('Game');
             }, this);
 
             let musicButton: Phaser.Sprite = this.game.add.sprite(this.world.centerX, this.world.centerY * (5 / 4), this.isPlaying ? 'music_on' : 'music_off');
             musicButton.anchor.set(0.5, 0.35);
-            musicButton.scale.set(0.5, 0.5)
+            musicButton.scale.set(0.5 * window.devicePixelRatio);
             musicButton.inputEnabled = true;
             musicButton.events.onInputDown.add(() => {
                 if (musicButton.key === 'music_on') {
