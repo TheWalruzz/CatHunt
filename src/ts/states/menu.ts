@@ -22,7 +22,7 @@ namespace App.State {
             mainText.stroke = '#000000';
             mainText.strokeThickness = 2;
             
-            let dedicationText: Phaser.Text = this.game.add.text(this.world.centerX, this.world.centerY * (3 / 2), 'Dla Marysi', {
+            let dedicationText: Phaser.Text = this.game.add.text(this.world.centerX, this.world.centerY * (13 / 8), 'Dla Marysi', {
                 font: 'Arial Black',
                 fontSize: 28,
                 fill: '#cc1000'
@@ -32,7 +32,7 @@ namespace App.State {
             dedicationText.strokeThickness = 2;
             dedicationText.setShadow(2, 2, 'rgba(0,0,0,0.5)', 5);
 
-            let fromText: Phaser.Text = this.game.add.text(this.world.centerX, this.world.centerY * (13 / 8), 'od wujka Pawła', {
+            let fromText: Phaser.Text = this.game.add.text(this.world.centerX, this.world.centerY * (14 / 8), 'od wujka Pawła', {
                 font: 'Arial Black',
                 fontSize: 24,
                 fill: '#cc1000'
@@ -41,16 +41,6 @@ namespace App.State {
             fromText.stroke = '#000000';
             fromText.strokeThickness = 2;
             fromText.setShadow(2, 2, 'rgba(0,0,0,0.5)', 5);
-
-            let christmasText: Phaser.Text = this.game.add.text(this.world.centerX, this.world.centerY * (15 / 8), 'Boże Narodzenie 2016', {
-                font: 'Arial Black',
-                fontSize: 24,
-                fill: '#cc1000'
-            });
-            christmasText.anchor.set(0.5);
-            christmasText.stroke = '#000000';
-            christmasText.strokeThickness = 2;
-            christmasText.setShadow(2, 2, 'rgba(0,0,0,0.5)', 5);
 
             let playButton: Phaser.Sprite = this.game.add.sprite(this.world.centerX, this.world.centerY, 'play');
             playButton.anchor.set(0.5, 0.75);

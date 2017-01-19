@@ -36,7 +36,7 @@ namespace App.State {
             this.menuButton.scale.set(0.5);
             
 
-            this.cat = new App.Models.Cat(this.game, this.world.centerX, 10);;
+            this.cat = new App.Models.Cat(this.game, this.world.centerX, 10);
 
             this.text.bringToTop();
             this.menuButton.bringToTop();
@@ -48,7 +48,7 @@ namespace App.State {
             let point = new Phaser.Point();
 
             point.x = Math.round(Math.random()) ? 0 : this.game.width;
-            point.y = this.game.height - Math.round(Math.random() * this.game.width);
+            point.y = this.game.height - Math.round(Math.random() * this.game.height / 2);
 
             return point;
         }
@@ -56,6 +56,7 @@ namespace App.State {
         private smashEnemy(enemy: App.Models.AbstractEnemy): void {
             if (!enemy.isSmashed) {
                 this.cat.attack(new Phaser.Point(enemy.x, enemy.y), () => {
+                    this.game.add.audio('smash', 1, false).play();
                     enemy.sendToBack();
                     enemy.smash();
                 });
@@ -66,6 +67,7 @@ namespace App.State {
 
         private createNewEnemy(): void {
             let nextPosition = this.getNextSpawnPoint();
+            console.log(nextPosition.x, nextPosition.y);
 
             new this.enemies[Math.floor(Math.random() * this.enemies.length)](
                 this.game,

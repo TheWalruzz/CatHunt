@@ -11,6 +11,7 @@ namespace App.State {
       this.game.load.spritesheet('beetle', 'assets/beetle_base_26x33.png', 26, 33);
       this.game.load.spritesheet('fly', 'assets/fly_32x32.png', 32, 32);
       this.game.load.audio('music', 'assets/music.ogg');
+      this.game.load.audio('smash', 'assets/squish.ogg');
     }
 
     public create(): void {

@@ -29,7 +29,7 @@ namespace App.Models {
             this.startX = x;
             this.startY = y;
             this.endX = Math.abs(this.x - this.game.width);
-            this.endY = 2 * this.game.height - this.game.width - y;
+            this.endY = 1.5 * this.game.height - y;
 
             this.game.add.existing(this);
         }

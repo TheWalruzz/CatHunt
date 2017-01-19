@@ -80,9 +80,10 @@ namespace App {
 }
 
 window.onload = () => {
+  console.log(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio);
   // tslint:disable-next-line:no-unused-new no-unused-variable
   let app = new App.Main({
-    width: 360,
-    height: 640,
+    width: window.innerWidth * window.devicePixelRatio,
+    height: window.innerHeight * window.devicePixelRatio,
   });
 };
