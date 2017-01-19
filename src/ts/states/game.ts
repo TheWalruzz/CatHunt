@@ -67,7 +67,6 @@ namespace App.State {
 
         private createNewEnemy(): void {
             let nextPosition = this.getNextSpawnPoint();
-            console.log(nextPosition.x, nextPosition.y);
 
             new this.enemies[Math.floor(Math.random() * this.enemies.length)](
                 this.game,
